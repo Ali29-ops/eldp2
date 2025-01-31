@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | Eldawleya for Plastic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #003366, #336699);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+
+        /* Hamburger Menu */
+        #menu-toggle {
+            display: none; /* Hidden by default */
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        /* Close Button */
+        #close-menu {
+            display: none; /* Hidden by default */
+            background: none;
+            border: none;
+            color: #003366;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 15px 20px;
+            text-align: right;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        #nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav a {
+            color: #003366;
+            text-decoration: none;
+            padding: 15px 20px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            color: #cc3333;
+            transform: scale(1.05);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            border-radius: 8px;
+            z-index: 1;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            padding: 10px 16px;
+            text-decoration: none;
+            color: black;
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f0f0f0;
+        }
+        .dropdown a i {
+            margin-left: 5px; /* Add some space between the text and the icon */
+            font-size: 0.8em; /* Adjust the size of the icon */
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            /* Show hamburger icon on small screens */
+            #menu-toggle {
+                display: block;
+            }
+
+            /* Show close button when menu is active */
+            #close-menu {
+                display: block;
+            }
+
+            /* Slide-in menu from the right */
+            #nav-links {
+                display: flex;
+                flex-direction: column;
+                background-color: #fff;
+                width: 250px;
+                height: 100vh;
+                position: fixed;
+                top: 0;
+                right: -250px;
+                box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 1000;
+            }
+
+            #nav-links.active {
+                right: 0;
+            }
+
+            #nav-links a {
+                padding: 15px 20px;
+                text-align: left;
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+            }
+        }
+
+        /* Product Section */
+        .product-section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .product-section h2 {
+            font-size: 32px;
+            color: #003366;
+            margin-bottom: 40px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .product-item {
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product-item h3 {
+            font-size: 20px;
+            margin: 15px 0;
+        }
+
+        .product-item p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .product-item a {
+            text-decoration: none;
+            color: #CC3333;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .product-item a:hover {
+            color: #003366;
+        }
+
+        .product-item:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Company Info Section */
+        .company-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #003366;
+            color: white;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .company-info .company-description,
+        .company-info .contact-info {
+            width: calc(50% - 20px);
+        }
+
+        .company-info h2 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .company-info p {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .company-info a {
+            color: #cc3333;
+            text-decoration: none;
+        }
+
+        .contact-info i {
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #003366;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Eldawleya for Plastic</h1>
+        <p>Our Range of High-Quality Plastic Products</p>
+        <!-- Hamburger Menu in the Header -->
+        <button id="menu-toggle" aria-label="Toggle navigation menu">
+            <i class="fas fa-bars"></i> <!-- Hamburger icon -->
+        </button>
+    </header>
+
+    <!-- Navigation Bar with Products Dropdown -->
+    <nav>
+        <div id="nav-links">
+            <!-- Close Button -->
+            <button id="close-menu" aria-label="Close navigation menu">
+                <i class="fas fa-times"></i> <!-- Close icon -->
+            </button>
+            <a href="index.html" aria-label="Go to home page">Home</a>
+            <a href="about.html" aria-label="Learn about us">About Us</a>
+            <div class="dropdown">
+                <a href="products.html" aria-label="View our products">Products<i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="category1.html" aria-label="View Category 1">Category 1</a>
+                    <a href="category2.html" aria-label="View Category 2">Category 2</a>
+                    <a href="category3.html" aria-label="View Category 3">Category 3</a>
+                </div>
+            </div>
+            <a href="contact.html" aria-label="Contact us">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Main Product Section -->
+    <section class="product-section">
+        <h2>Our Products</h2>
+        <div class="product-grid">
+            <!-- Example Product Item -->
+            <div class="product-item">
+                <img src="product1.jpg" alt="Plastic Bottles">
+                <h3>Plastic Bottles</h3>
+                <p>Durable and eco-friendly plastic bottles for all your needs.</p>
+            </div>
+            <div class="product-item">
+                <img src="product2.jpg" alt="Plastic Containers">
+                <h3>Plastic Containers</h3>
+                <p>Leak-proof and safe plastic containers for storage.</p>
+            </div>
+            <div class="product-item">
+                <img src="product3.jpg" alt="Custom Plastics">
+                <h3>Custom Plastics</h3>
+                <p>Tailored plastic solutions for unique requirements.</p>
+            </div>
+            <div class="product-item">
+                <img src="product4.jpg" alt="Plastic Sheets">
+                <h3>Plastic Sheets</h3>
+                <p>High-quality plastic sheets for various industrial uses.</p>
+            </div>
+            <div class="product-item">
+                <img src="product5.jpg" alt="Plastic Bags">
+                <h3>Plastic Bags</h3>
+                <p>Eco-friendly and durable plastic bags for packaging.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Info Section -->
+    <section class="company-info">
+        <div class="company-description">
+            <h2>Eldawleya for Plastic</h2>
+            <p>We are a leading manufacturer of durable and eco-friendly plastic products, committed to providing
+                innovative solutions for various industries.</p>
+        </div>
+        <div class="contact-info">
+            <h2>Contact Us</h2>
+            <p><strong><i class="fas fa-phone-alt"></i>Phone:</strong> +123 456 789</p>
+            <p><strong><i class="fas fa-map-marker-alt"></i>Address:</strong> 123 Plastic Avenue, Industrial City,
+                Cairo, Egypt</p>
+            <p><strong><i class="fas fa-envelope"></i>Email:</strong> <a
+                    href="mailto:info@eldawleya.com">info@eldawleya.com</a></p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Eldawleya for Plastic. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Toggle menu visibility
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            var navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when close button is clicked
+        document.getElementById('close-menu').addEventListener('click', function () {
+            var navLinks = document.getElementById('nav-links');
+            navLinks.classList.remove('active');
+        });
+    </script>
+</body>
+
+</html>

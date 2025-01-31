@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Eldawleya for Plastic</title>
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #edf8de;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #006242, #408A63);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        header h1 {
+            color: #ffffff;
+            font-size: 2.8rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        header p {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+
+        /* Logo Styling */
+        .logo {
+            width: 200px;
+            /* Adjust size as needed */
+            height: auto;
+            position: absolute;
+            /* Change to absolute positioning */
+            top: 20px;
+            /* Adjust to position vertically */
+            left: 20px;
+            /* Adjust to position horizontally */
+            /* You can also use right: 20px; to position it on the right */
+        }
+  /* Hamburger Menu */
+  #menu-toggle {
+            display: none; /* Hidden by default */
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        /* Close Button */
+        #close-menu {
+            display: none; /* Hidden by default */
+            background: none;
+            border: none;
+            color: #003366;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 15px 20px;
+            text-align: right;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        #nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav a {
+            color: #003366;
+            text-decoration: none;
+            padding: 15px 20px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            color: #cc3333;
+            transform: scale(1.05);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            border-radius: 8px;
+            z-index: 1;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            padding: 10px 16px;
+            text-decoration: none;
+            color: black;
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f0f0f0;
+        }
+        .dropdown a i {
+            margin-left: 5px; /* Add some space between the text and the icon */
+            font-size: 0.8em; /* Adjust the size of the icon */
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            /* Show hamburger icon on small screens */
+            #menu-toggle {
+                display: block;
+            }
+
+            /* Show close button when menu is active */
+            #close-menu {
+                display: block;
+            }
+
+            /* Slide-in menu from the right */
+            #nav-links {
+                display: flex;
+                flex-direction: column;
+                background-color: #fff;
+                width: 250px;
+                height: 100vh;
+                position: fixed;
+                top: 0;
+                right: -250px;
+                box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 1000;
+            }
+
+            #nav-links.active {
+                right: 0;
+            }
+
+            #nav-links a {
+                padding: 15px 20px;
+                text-align: left;
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+            }
+            
+        }
+
+        /* General Hero Section Styles */
+        /* Hero Section */
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Fullscreen Hero Section */
+        .hero {
+            position: relative;
+            background-color: #3bb46e;
+            /* Example image URL */
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            /* Create a pseudo-element for overlay */
+            position: absolute;
+            /* Position it absolutely */
+            top: 0;
+            /* Cover the top */
+            left: 0;
+            /* Cover the left */
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            background: rgba(0, 0, 0, 0.5);
+            /* Dark overlay for better text readability */
+            z-index: 1;
+            /* Place it below the text */
+        }
+
+        .hero-content {
+            position: relative;
+            /* Position relative to stack above the overlay */
+            color: #ffffff;
+            /* Text color */
+            z-index: 2;
+            /* Place it above the overlay */
+            padding: 20px;
+            /* Padding for content */
+        }
+
+        .hero-content h1 {
+            color: #101110;
+            font-size: 4rem;
+            font-weight: bold;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            /* Text shadow for better visibility */
+        }
+
+        .hero-content p {
+            color: #101110;
+            font-size: 1.5rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            /* Text shadow for better visibility */
+        }
+
+        /* Remove default margin/padding for the body and html */
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+        }
+
+
+        /* ... rest of your CSS ... */
+
+        /* From Uiverse.io by cssbuttons-io */
+        .c-button {
+            color: #000;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            padding: 0.9em 1.6em;
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            z-index: 1;
+        }
+
+        .c-button--gooey {
+            color: #101110;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 4px solid #101110;
+            border-radius: 0;
+            position: relative;
+            transition: all 700ms ease;
+        }
+
+        .c-button--gooey .c-button__blobs {
+            height: 100%;
+            filter: url(#goo);
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: -3px;
+            right: -1px;
+            z-index: -1;
+        }
+
+        .c-button--gooey .c-button__blobs div {
+            background-color: #101110;
+            width: 34%;
+            height: 100%;
+            border-radius: 100%;
+            position: absolute;
+            transform: scale(1.4) translateY(125%) translateZ(0);
+            transition: all 700ms ease;
+        }
+
+        .c-button--gooey .c-button__blobs div:nth-child(1) {
+            left: -5%;
+        }
+
+        .c-button--gooey .c-button__blobs div:nth-child(2) {
+            left: 30%;
+            transition-delay: 60ms;
+        }
+
+        .c-button--gooey .c-button__blobs div:nth-child(3) {
+            left: 66%;
+            transition-delay: 25ms;
+        }
+
+        .c-button--gooey:hover {
+            color: #fff;
+        }
+
+        .c-button--gooey:hover .c-button__blobs div {
+            transform: scale(1.4) translateY(0) translateZ(0);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #edf8de;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav a {
+            color: #0c0c0c;
+            text-decoration: none;
+            padding: 15px 20px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: color 0.3s, transform 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        nav a:hover {
+            color: #cc3333;
+            transform: scale(1.05);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            border-radius: 8px;
+            z-index: 1;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            padding: 10px 16px;
+            text-decoration: none;
+            color: black;
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .main-content {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .main-content h2 {
+            font-size: 36px;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .main-content p {
+            font-size: 18px;
+            color: #555;
+        }
+
+
+        /* About Section */
+        .about {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin: 30px auto;
+            max-width: 800px;
+        }
+
+        .about h2 {
+            font-size: 32px;
+            color: #288b51;
+            margin-bottom: 15px;
+        }
+
+        .about p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Swiper Carousel Styles */
+        .products-carousel {
+            padding: 60px 20px;
+            background-color: #edf8de;
+        }
+        h2 {
+            color: #288b51;
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+        .swiper {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+
+        .swiper-slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: #f7fef8;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .swiper-slide h3 {
+            font-size: 20px;
+            color: #288b51;
+            margin-bottom: 10px;
+        }
+
+        .swiper-slide button {
+            background-color: #288b51;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .swiper-slide button:hover {
+            background-color: #CC3333;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            /* Ensures items wrap on smaller screens */
+            gap: 20px;
+            /* Adds space between child elements */
+            padding: 20px;
+            max-width: 1200px;
+            /* Sets a maximum width for consistency */
+            margin: 0 auto;
+            /* Centers the container */
+            background-color: #f9f9f9;
+            /* Subtle background color for contrast */
+            border-radius: 8px;
+            /* Smoothens edges */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            /* Adds a slight shadow for depth */
+        }
+
+        .sidebar {
+            background-color: #d2a679;
+            color: #333;
+            padding: 20px;
+            text-align: center;
+            writing-mode: vertical-rl;
+            /* Vertical text direction */
+            transform: rotate(180deg);
+            /* Flips text for proper orientation */
+            font-size: 14px;
+            font-weight: bold;
+            flex: 1;
+            /* Takes up proportional space */
+            border-radius: 8px;
+            /* Matches container’s rounded edges */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* Adds a shadow to sidebar */
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 20px;
+            flex: 4;
+            /* Occupies more space compared to sidebar */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border-radius: 8px;
+            /* Matches sidebar’s rounded edges */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* Adds a shadow to content */
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            /* Smoothens image edges */
+        }
+
+        .content h1 {
+            font-size: 36px;
+            color: #333;
+            margin: 0 0 10px;
+        }
+
+        .content p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            background-color: #ff5e5e;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .quick-actions {
+            background-color: #288b51;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin-top: 20px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .quick-actions:hover {
+            background-color: #555;
+            /* Darker shade on hover */
+        }
+        .swiper-button-next, .swiper-button-prev {
+    position: absolute;
+    top: var(--swiper-navigation-top-offset, 50%);
+    width: calc(var(--swiper-navigation-size) / 44* 27);
+    height: var(--swiper-navigation-size);
+    margin-top: calc(0px -(var(--swiper-navigation-size) / 2));
+    z-index: 10;
+    cursor: pointer;
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+    color: #288b51;
+}
+
+
+        .plastic-manufacturing {
+            background-color: transparent;
+            /* Soft background for contrast */
+            padding: 20px 10px;
+            margin: 0 auto;
+
+        }
+
+        .plastic-manufacturing .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 30px;
+            /* Balanced spacing between text and image */
+        }
+
+        .text-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .text-content h2 {
+            font-size: 32px;
+            color: #288b51;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            font-weight: bold;
+        }
+
+        .text-content p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .image-content {
+            flex: 1;
+            text-align: center;
+            /* Centers the image */
+        }
+
+        .image-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            /* Adds polish to the image */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            /* Soft shadow for image */
+        }
+
+        @media (max-width: 768px) {
+            .plastic-manufacturing .container {
+                flex-direction: column;
+            }
+
+            .text-content,
+            .image-content {
+                text-align: center;
+            }
+        }
+
+
+        /* Services Section */
+        .services {
+            padding: 60px 20px;
+            background-color: #edf8de;
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 32px;
+            color: #288b51;
+            margin-bottom: 15px;
+        }
+
+        .services p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .services-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-item {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .service-item h3 {
+            font-size: 20px;
+            color: #288b51;
+            margin-bottom: 10px;
+        }
+
+        .service-item p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .company-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #288b51;
+            color: white;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .company-info .company-description,
+        .company-info .contact-info {
+            width: calc(50% - 20px);
+        }
+
+        .company-info h2 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .company-info p {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .company-info a {
+            color: #cc3333;
+            text-decoration: none;
+        }
+
+        .contact-info i {
+            margin-right: 8px;
+        }
+
+
+        .latest-news {
+            display: flex;
+            /* Use flexbox for side-by-side layout */
+            align-items: center;
+            /* Center items vertically */
+            padding: 60px 20px;
+            background-color: #edf8de;
+            /* Light background for contrast */
+        }
+
+        .news-content {
+            flex: 1;
+            /* Allow this section to take up available space */
+            padding-right: 20px;
+            /* Space between text and image */
+        }
+
+        .news-image {
+            flex: 1;
+            /* Make the image section take up equal space */
+        }
+
+        .news-image img {
+            width: 100%;
+            /* Make image responsive */
+            height: auto;
+            /* Maintain aspect ratio */
+            border-radius: 8px;
+            /* Rounded corners */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            /* Add some shadow for depth */
+        }
+
+        .blog-post {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            /* Space between posts */
+        }
+
+        .blog-post h3 {
+            font-size: 20px;
+            color: #288b51;
+            margin-bottom: 10px;
+        }
+
+        .blog-post p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .blog-post a {
+            color: #288b51;
+            text-decoration: none;
+        }
+
+        /* Location Section */
+        .location-section {
+            background-color: #edf8de;
+            /* Light gray */
+            padding: 4rem 1rem;
+            /* Maintain original padding */
+        }
+
+        .location-section h2 {
+            font-size: 1.875rem;
+            /* Equivalent to text-3xl */
+            text-align: center;
+            color: #288b51;
+            /* Dark blue */
+            margin-bottom: 1rem;
+        }
+
+        .location-container {
+            max-width: 800px;
+            /* Ensure the container width is limited */
+            margin: 0 auto;
+            /* Center the container */
+            padding: 0 1rem;
+            /* Maintain original padding */
+        }
+       
+
+        /* Responsive iframe wrapper */
+        .iframe-wrapper {
+            position: relative;
+            padding-bottom: 50%;
+            /* Adjusted aspect ratio for a bit taller height */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow */
+        }
+
+        .iframe-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Caption styling */
+        .map-caption {
+            text-align: center;
+            font-size: 0.875rem;
+            color: #4b5563;
+            /* Gray-600 */
+            margin-top: 0.5rem;
+        }
+
+
+
+
+        footer {
+            background-color: #288b51;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+
+<header>
+    <img src="" alt="Eldawleya for Plastic" class="logo">
+    <h1>Eldawleya for Plastic</h1>
+    <p>Your trusted partner for high-quality plastic products</p>
+    <a href="products.html">
+        <button class="c-button c-button--gooey">Discover Our Products
+            <div class="c-button__blobs">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </button>
+    </a>
+    
+        <!-- Hamburger Menu in the Header -->
+        <button id="menu-toggle" aria-label="Toggle navigation menu">
+            <i class="fas fa-bars"></i> <!-- Hamburger icon -->
+        </button>
+    </header>
+
+    <!-- Navigation Bar with Products Dropdown -->
+    <nav>
+        <div id="nav-links">
+            <!-- Close Button -->
+            <button id="close-menu" aria-label="Close navigation menu">
+                <i class="fas fa-times"></i> <!-- Close icon -->
+            </button>
+            <a href="index.html" aria-label="Go to home page">Home</a>
+            <a href="about.html" aria-label="Learn about us">About Us</a>
+            <div class="dropdown">
+                <a href="products.html" aria-label="View our products">Products<i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="category1.html" aria-label="View Category 1">Category 1</a>
+                    <a href="category2.html" aria-label="View Category 2">Category 2</a>
+                    <a href="category3.html" aria-label="View Category 3">Category 3</a>
+                </div>
+            </div>
+            <a href="contact.html" aria-label="Contact us">Contact</a>
+        </div>
+    </nav>
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: block; height: 0; width: 0;">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+                    result="goo"></feColorMatrix>
+                <feBlend in="SourceGraphic" in2="goo"></feBlend>
+            </filter>
+        </defs>
+    </svg>
+</header>
+
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Innovative Plastic Solutions for a Sustainable Future</h1>
+        <p>High-quality, eco-friendly plastic products tailored to your needs.</p>
+    </div>
+</section>
+
+
+<section class="about">
+    <h2>About Us</h2>
+    <p>
+        Eldawleya for Plastic is a leading manufacturer of durable and eco-friendly plastic solutions.
+        With a legacy of excellence, we deliver innovative and sustainable products tailored to various industries.
+    </p>
+</section>
+
+<section class="products-carousel">
+    <h2>Our Products</h2>
+    <p>Explore our range of innovative plastic products.</p>
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="product1.jpg" alt="Product 1">
+                <h3>Plastic Container</h3>
+                <button>View More</button>
+            </div>
+            <div class="swiper-slide">
+                <img src="product2.jpg" alt="Product 2">
+                <h3>Plastic Bottle</h3>
+                <button>View More</button>
+            </div>
+            <div class="swiper-slide">
+                <img src="product3.jpg" alt="Product 3">
+                <h3>Plastic Bag</h3>
+                <button>View More</button>
+            </div>
+            <div class="swiper-slide">
+                <img src="product4.jpg" alt="Product 4">
+                <h3>Plastic Bag</h3>
+                <button>View More</button>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+    
+</section>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            5+ YEARS OF EXPERIENCE
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <img alt="Plastic pellets and a building with Master PET logo" height="400"
+                src="https://storage.googleapis.com/a1aa/image/OrCUin5wUSIIC1nNpiAGquyi8pVxh5GzaGZrM5JfJixcCJ7JA.jpg"
+                width="600" />
+            <h1>
+                Leading Quality Plastic Jars Manufacturing
+            </h1>
+            <p>
+                Master PET is one of the leading companies in the Arab Republic of Egypt and the Middle East in the
+                field of manufacturing polyethylene terephthalate (PET), polyethylene (PE), and polypropylene (PP)
+                containers.
+            </p>
+            <p>
+                Master PET started its journey in the world of plastic products and offered many solutions for
+                <span class="highlight">packaging</span> food, medical and cosmetics.
+            </p>
+            <div class="quick-actions">
+                Quick Actions
+            </div>
+        </div>
+    </div>
+</body>
+<!-- New Plastic Manufacturing Section -->
+<!-- Enhanced Plastic Manufacturing Section -->
+<section class="plastic-manufacturing">
+    <div class="container">
+        <div class="text-content">
+            <h2>Plastic Manufacturing Excellence</h2>
+            <p>
+                Eldawleya for Plastic brings decades of expertise in plastic manufacturing. Our facilities
+                are equipped with cutting-edge technology to produce durable and eco-friendly products that
+                serve a wide range of industries.
+            </p>
+            <p>
+                From food-grade containers to industrial solutions, we ensure that every product meets
+                stringent quality standards. Our commitment to innovation drives us to continually improve
+                and deliver unmatched value to our customers.
+            </p>
+        </div>
+        <div class="image-content">
+            <img alt="Plastic cans and a building with El Dawleya Plastics logo"
+                src="https://example.com/new-image.jpg" />
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="services">
+    <h2>Our Services</h2>
+    <p>We offer a wide range of services to support your needs.</p>
+    <div class="services-container">
+        <div class="service-item">
+            <img src="images.jpg" alt="Custom Design">
+            <h3>Custom Design</h3>
+            <p>We create tailored plastic designs to fit your specific requirements.</p>
+        </div>
+        <div class="service-item">
+            <img src="service2.jpg" alt="Eco-Friendly Solutions">
+            <h3>Eco-Friendly Solutions</h3>
+            <p>Our products are manufactured with sustainability in mind.</p>
+        </div>
+        <div class="service-item">
+            <img src="service3.jpg" alt="Fast Delivery">
+            <h3>Fast Delivery</h3>
+            <p>We ensure timely delivery of high-quality products.</p>
+        </div>
+    </div>
+</section>
+<!-- Blog/News Section -->
+<section class="latest-news">
+    <div class="news-content">
+        <h2>Latest News</h2>
+        <article class="blog-post">
+            <h3>New Eco-Friendly Product Launch</h3>
+            <p>We are excited to announce our latest eco-friendly product...</p>
+            <a href="blog-post.html">Read More</a>
+        </article>
+        <article class="blog-post">
+            <h3>Industry Trends in Plastic Manufacturing</h3>
+            <p>Discover the latest trends shaping the plastic industry...</p>
+            <a href="blog-post.html">Read More</a>
+        </article>
+    </div>
+    <div class="news-image">
+        <img src="aluminum-lid-packing-machine-plastic-can_29362-139.jpg" alt="Latest News">
+    </div>
+</section>
+<section class="location-section">
+    <h2>Our Location</h2>
+    <div class="location-container">
+        <div class="iframe-wrapper">
+            <iframe 
+                    title="Our Location Map" 
+                    loading="lazy"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.1234567890123!2d31.235711!3d30.044419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145840c123456789%3A0x123456789abcdef!2s123%20Plastic%20Avenue%2C%20Industrial%20City%2C%20Cairo%2C%20Egypt!5e0!3m2!1sen!2sus!4v1616161616161!5m2!1sen!2sus"
+                    allowfullscreen>
+                </iframe>
+        </div>
+        <p class="map-caption">
+            Find us at 123 Plastic Avenue, Industrial City, Cairo, Egypt.
+        </p>
+    </div>
+    
+</section>
+<section class="company-info">
+    <div class="company-description">
+        <h2>Eldawleya for Plastic</h2>
+        <p>We are a leading manufacturer of durable and eco-friendly plastic products, committed to providing
+            innovative solutions for various industries.</p>
+    </div>
+    <div class="contact-info">
+        <h2>Contact Us</h2>
+        <p><strong><i class="fas fa-phone-alt"></i>Phone:</strong> +123 456 789</p>
+        <p><strong><i class="fas fa-map-marker-alt"></i>Address:</strong> 123 Plastic Avenue, Industrial City,
+            Cairo, Egypt</p>
+        <p><strong><i class="fas fa-envelope"></i>Email:</strong> <a
+                href="mailto:info@eldawleya.com">info@eldawleya.com</a></p>
+    </div>
+</section>
+<footer>
+    <p>&copy; 2024 Eldawleya for Plastic. All Rights Reserved.</p>
+</footer>
+
+ <!-- Swiper.js Script -->
+ <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+ <script>
+     const swiper = new Swiper('.swiper', {
+         loop: true,
+         slidesPerView: 1,
+         spaceBetween: 20,
+         autoplay: {
+             delay: 3000,
+             disableOnInteraction: false,
+         },
+         navigation: {
+             nextEl: '.swiper-button-next',
+             prevEl: '.swiper-button-prev',
+         },
+         pagination: {
+             el: '.swiper-pagination',
+             clickable: true,
+         },
+         breakpoints: {
+             768: {
+                 slidesPerView: 2,
+             },
+             1024: {
+                 slidesPerView: 3,
+             },
+         },
+     });
+
+     // Toggle menu visibility
+     document.getElementById('menu-toggle').addEventListener('click', function () {
+         var navLinks = document.getElementById('nav-links');
+         navLinks.classList.toggle('active');
+     });
+
+     // Close menu when close button is clicked
+     document.getElementById('close-menu').addEventListener('click', function () {
+         var navLinks = document.getElementById('nav-links');
+         navLinks.classList.remove('active');
+     });
+ </script>
+</body>
+
+</html>
